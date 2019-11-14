@@ -26,6 +26,10 @@ import javax.swing.JSlider;
 
 public class Tela extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtSobrenome;
@@ -222,7 +226,7 @@ public class Tela extends JFrame {
 				model.addColumn("ID"); 
 				table.getColumn("ID").setMaxWidth(15);
 				model.addColumn("Nome");
-				model.addColumn("Endereço"); 
+				model.addColumn("EndereÃ§o"); 
 				
 				for (String[] row : result) {
 					model.addRow(row);

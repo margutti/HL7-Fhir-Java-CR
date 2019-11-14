@@ -1,27 +1,27 @@
 package app;
 
-import java.awt.List;
+//import java.awt.List;
 import java.util.ArrayList;
 
-import org.apache.derby.tools.sysinfo;
-import org.hl7.fhir.instance.model.api.IBaseResource;
+//import org.apache.derby.tools.sysinfo;
+//import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.utilities.graphql.Parser;
 
-import com.google.gson.Gson;
-import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+//import com.google.gson.Gson;
+//import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.model.dstu2.composite.AddressDt;
-import ca.uhn.fhir.model.dstu2.composite.HumanNameDt;
+//import ca.uhn.fhir.model.dstu2.composite.HumanNameDt;
 import ca.uhn.fhir.model.dstu2.resource.Bundle;
 import ca.uhn.fhir.model.dstu2.resource.Bundle.Entry;
-import ca.uhn.fhir.model.dstu2.resource.Medication;
+//import ca.uhn.fhir.model.dstu2.resource.Medication;
 import ca.uhn.fhir.model.dstu2.resource.Patient;
 import ca.uhn.fhir.model.dstu2.valueset.BundleTypeEnum;
 import ca.uhn.fhir.model.dstu2.valueset.HTTPVerbEnum;
 import ca.uhn.fhir.model.primitive.IdDt;
-import ca.uhn.fhir.parser.BaseParser;
-import ca.uhn.fhir.rest.api.MethodOutcome;
+//import ca.uhn.fhir.parser.BaseParser;
+//import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 
 public class HL7Provider {
@@ -33,7 +33,7 @@ public class HL7Provider {
 		System.out.println("Starting...");
 	
 		
-		insertPatient(createSimplePacient("Ronaldo","Fenômeno"));
+		insertPatient(createSimplePacient("Ronaldo","Fenï¿½meno"));
 //		System.out.println(searchPatient("Ronaldo",""));
 		
 	}
@@ -105,7 +105,7 @@ public class HL7Provider {
 				String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
 				IGenericClient client = ctx.newRestfulGenericClient(serverBase);
 				 
-				//Faz busca pelos parâmetros fornecidos
+				//Faz busca pelos parï¿½metros fornecidos
 				Bundle results;
 				results = client.search().byUrl("Patient?_id="+id).returnBundle(Bundle.class).execute();
 					
@@ -126,7 +126,7 @@ public class HL7Provider {
 	
 	public static Patient createPacient(String nome, String sobrenome, String cep, String cidade, String pais) {
 		
-		//Cria endereço
+		//Cria endereï¿½o
 		AddressDt endereco = new AddressDt();
 			endereco.setPostalCode(cep);
 			endereco.setCity(cidade);
@@ -175,7 +175,7 @@ public class HL7Provider {
 		IGenericClient client = ctx.newRestfulGenericClient("http://fhirtest.uhn.ca/baseDstu2");
 		Bundle resp = client.transaction().withBundle(bundle).execute();
 		 
-		// loga e retorna o resultado da inserção
+		// loga e retorna o resultado da inserï¿½ï¿½o
 		System.out.println("Criado paciente com id "+resp.getEntryFirstRep().getResponse().getLocation().substring(8,13));
 		System.out.println(ctx.newXmlParser().setPrettyPrint(true).encodeResourceToString(resp));
 		System.out.println(ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(resp));
