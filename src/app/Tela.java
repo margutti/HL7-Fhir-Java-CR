@@ -1,6 +1,6 @@
 package app;
 
-import java.awt.BorderLayout;
+//import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,14 +15,14 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.ImageIcon;
+//import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+//import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
-import javax.swing.JSlider;
+//import javax.swing.JSlider;
 
 public class Tela extends JFrame {
 
@@ -103,11 +103,11 @@ public class Tela extends JFrame {
 		lblCidadde.setBounds(81, 174, 86, 14);
 		contentPane.add(lblCidadde);
 		
-		JLabel lblPas = new JLabel("Pa\u00EDs:");
+		JLabel lblPas = new JLabel("País:");
 		lblPas.setBounds(81, 199, 86, 14);
 		contentPane.add(lblPas);
 		
-		JLabel lblEndereo = new JLabel("Endere\u00E7o");
+		JLabel lblEndereo = new JLabel("Endereço");
 		lblEndereo.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblEndereo.setBounds(81, 124, 66, 14);
 		contentPane.add(lblEndereo);
@@ -143,7 +143,7 @@ public class Tela extends JFrame {
 		contentPane.add(lblDadosGerais);
 		
 		lblIdPesquisa = new JLabel("ID:");
-		lblIdPesquisa.setBounds(366, 334, 50, 14);
+		lblIdPesquisa.setBounds(356, 334, 50, 14);
 		contentPane.add(lblIdPesquisa);
 		
 		JLabel label = new JLabel("Nome:");
@@ -156,7 +156,7 @@ public class Tela extends JFrame {
 		
 		txtIDPesquisa = new JTextField();
 		txtIDPesquisa.setColumns(10);
-		txtIDPesquisa.setBounds(399, 331, 58, 20);
+		txtIDPesquisa.setBounds(389, 331, 68, 20);
 		contentPane.add(txtIDPesquisa);
 		
 		txtNomePesquisa = new JTextField();
@@ -216,7 +216,6 @@ public class Tela extends JFrame {
 				String sobrenome = null;
 				if(txtSobrenomePesquisa.getText().toString() != "")
 					sobrenome = txtSobrenomePesquisa.getText().toString();
-
 				
 				ArrayList<String[]> result = HL7Provider.searchPatient(nome, sobrenome, id);
 								
@@ -233,7 +232,6 @@ public class Tela extends JFrame {
 				}
 				
 				scrollPane.setViewportView(table);
-				
 			}
 		});
 		btnPesquisar.setBounds(375, 361, 110, 23);
@@ -246,7 +244,7 @@ public class Tela extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JLabel lblInformticaBiomdica = new JLabel("Inform\u00E1tica Biom\u00E9dica | UFCSPA | Uso permitido para fins educacionais");
+		JLabel lblInformticaBiomdica = new JLabel("Informática Biomédica | UFCSPA | Uso permitido para fins educacionais");
 		lblInformticaBiomdica.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInformticaBiomdica.setBounds(10, 627, 471, 14);
 		contentPane.add(lblInformticaBiomdica);

@@ -26,23 +26,19 @@ import ca.uhn.fhir.rest.client.api.IGenericClient;
 
 public class HL7Provider {
 	
-	
-	
-	public static void main(String[] args) {
-	
-		System.out.println("Starting...");
-	
-		
-		insertPatient(createSimplePacient("Ronaldo","Fen�meno"));
-//		System.out.println(searchPatient("Ronaldo",""));
-		
-	}
-	
+//	public static void main(String[] args) {
+//	
+//		System.out.println("Starting...");
+//	
+//		
+//		insertPatient(createSimplePacient("Ronaldo","Fenômeno"));
+////		System.out.println(searchPatient("Ronaldo",""));
+//		
+//	}
 	
 	public static ArrayList<String[]> searchPatient(String name, String surname, String id) {
 		
 		ArrayList<String[]> result = new ArrayList<String[]>();
-		
 		
 		// We're connecting to a DSTU1 compliant server in this example
 		FhirContext ctx = FhirContext.forDstu2();
@@ -64,7 +60,7 @@ public class HL7Provider {
 				
 		}
 				
-		int i = 0;
+//		int i = 0;
 		for (Entry entry : results.getEntry()) {
 			
 			String[] row = new String[3];
@@ -85,52 +81,49 @@ public class HL7Provider {
 
 			String formatedID = patient.getId().getValue().toString().substring(8,13);	
 			
-			
 			row[0] = formatedID;
 			row[1] = formatedName;
 			row[2] = formatedAdderess;
 			result.add(row);
-		i++;
+//		i++;
 		}
 		
 		return result;
-		
 	}
 	
 	public static String getPacient(String id, String encode) {
 		
 		String result = "";
 		
-				FhirContext ctx = FhirContext.forDstu2();
-				String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
-				IGenericClient client = ctx.newRestfulGenericClient(serverBase);
-				 
-				//Faz busca pelos par�metros fornecidos
-				Bundle results;
-				results = client.search().byUrl("Patient?_id="+id).returnBundle(Bundle.class).execute();
-					
-				for (Entry entry : results.getEntry()) {
-					
-					
-					if(encode == "json")
-						result = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(entry.getResource());
-					
-					if(encode == "xml")
-						result = ctx.newXmlParser().setPrettyPrint(true).encodeResourceToString(entry.getResource());
-
-				}
-				
+		FhirContext ctx = FhirContext.forDstu2();
+		String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
+		IGenericClient client = ctx.newRestfulGenericClient(serverBase);
+		 
+		//Faz busca pelos parâmetros fornecidos
+		Bundle results;
+		results = client.search().byUrl("Patient?_id="+id).returnBundle(Bundle.class).execute();
 			
-				return result;
+		for (Entry entry : results.getEntry()) {
+			
+			
+			if(encode == "json")
+				result = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(entry.getResource());
+			
+			if(encode == "xml")
+				result = ctx.newXmlParser().setPrettyPrint(true).encodeResourceToString(entry.getResource());
+
+		}
+		
+		return result;
 	}
 	
 	public static Patient createPacient(String nome, String sobrenome, String cep, String cidade, String pais) {
 		
-		//Cria endere�o
+		//Cria endereço
 		AddressDt endereco = new AddressDt();
-			endereco.setPostalCode(cep);
-			endereco.setCity(cidade);
-			endereco.setCountry(pais);
+		endereco.setPostalCode(cep);
+		endereco.setCity(cidade);
+		endereco.setCountry(pais);
 			
 		ArrayList<AddressDt> listaEnderecos = new ArrayList<AddressDt>();
 		listaEnderecos.add(endereco);
@@ -143,9 +136,7 @@ public class HL7Provider {
 			.addGiven(nome);
 		patient.setAddress(listaEnderecos);
 		
-		
-		Parser p = new Parser();
-		
+//		Parser p = new Parser();
 		
 		return patient;
 	}
@@ -153,7 +144,6 @@ public class HL7Provider {
 	public static String[] insertPatient(Patient patient) {
 				
 		//Cria parser
-		
 		
 		// Cria novo Bundle de entrada 
 		Bundle bundle = new Bundle();
@@ -175,11 +165,10 @@ public class HL7Provider {
 		IGenericClient client = ctx.newRestfulGenericClient("http://fhirtest.uhn.ca/baseDstu2");
 		Bundle resp = client.transaction().withBundle(bundle).execute();
 		 
-		// loga e retorna o resultado da inser��o
+		// loga e retorna o resultado da inserção
 		System.out.println("Criado paciente com id "+resp.getEntryFirstRep().getResponse().getLocation().substring(8,13));
 		System.out.println(ctx.newXmlParser().setPrettyPrint(true).encodeResourceToString(resp));
 		System.out.println(ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(resp));
-		
 		
 		String[] retornos = new String[3];
 		retornos[0] = resp.getEntryFirstRep().getResponse().getLocation().substring(8,13);
@@ -190,9 +179,6 @@ public class HL7Provider {
 	}
 	
 	public static Patient createSimplePacient(String nome, String sobrenome) {
-		
-			
-		
 		//Cria paciente
 		Patient patient = new Patient();
 		patient.setId(IdDt.newRandomUuid());
@@ -201,5 +187,4 @@ public class HL7Provider {
 			.addGiven(nome);
 		return patient;
 	}
-	
 }
