@@ -103,11 +103,11 @@ public class Tela extends JFrame {
 		lblCidadde.setBounds(81, 174, 86, 14);
 		contentPane.add(lblCidadde);
 		
-		JLabel lblPas = new JLabel("Pa√≠s:");
+		JLabel lblPas = new JLabel("PaÌs:");
 		lblPas.setBounds(81, 199, 86, 14);
 		contentPane.add(lblPas);
 		
-		JLabel lblEndereo = new JLabel("Endere√ßo");
+		JLabel lblEndereo = new JLabel("EndereÁo");
 		lblEndereo.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblEndereo.setBounds(81, 124, 66, 14);
 		contentPane.add(lblEndereo);
@@ -225,7 +225,7 @@ public class Tela extends JFrame {
 				model.addColumn("ID"); 
 				table.getColumn("ID").setMaxWidth(15);
 				model.addColumn("Nome");
-				model.addColumn("Endere√ßo"); 
+				model.addColumn("EndereÁo"); 
 				
 				for (String[] row : result) {
 					model.addRow(row);
@@ -238,15 +238,15 @@ public class Tela extends JFrame {
 		contentPane.add(btnPesquisar);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 395, 465, 221);
+		scrollPane.setBounds(20, 395, 465, 210);
 		contentPane.add(scrollPane);
 				
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JLabel lblInformticaBiomdica = new JLabel("Inform√°tica Biom√©dica | UFCSPA | Uso permitido para fins educacionais");
+		JLabel lblInformticaBiomdica = new JLabel("Inform·tica BiomÈdica | UFCSPA | Uso permitido para fins educacionais");
 		lblInformticaBiomdica.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInformticaBiomdica.setBounds(10, 627, 471, 14);
+		lblInformticaBiomdica.setBounds(10, 615, 471, 14);
 		contentPane.add(lblInformticaBiomdica);
 	}
 }
