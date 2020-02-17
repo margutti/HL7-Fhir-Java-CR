@@ -93,7 +93,7 @@ public class HL7Provider {
         String result = "";
 
         FhirContext ctx = FhirContext.forDstu2();
-        String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
+        String serverBase = "https://fhirtest.uhn.ca/baseDstu2";
         IGenericClient client = ctx.newRestfulGenericClient(serverBase);
 
         //Faz busca pelos parÃ¢metros fornecidos
@@ -161,7 +161,7 @@ public class HL7Provider {
         IGenericClient client = ctx.newRestfulGenericClient("http://fhirtest.uhn.ca/baseDstu2");
         Bundle resp = client.transaction().withBundle(bundle).execute();
 
-        // loga e retorna o resultado da inserção
+        // loga e retorna o resultado da inserï¿½ï¿½o
         System.out.println("Criado paciente com id " + resp.getEntryFirstRep().getResponse().getLocation().substring(8, 13));
         System.out.println(ctx.newXmlParser().setPrettyPrint(true).encodeResourceToString(resp));
         System.out.println(ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(resp));
