@@ -39,7 +39,7 @@ public class HL7Provider {
 
         // We're connecting to a DSTU1 compliant server in this example
         FhirContext ctx = FhirContext.forDstu2();
-        String serverBase = "http://fhirtest.uhn.ca/baseDstu2";
+        String serverBase = "https://fhirtest.uhn.ca/baseDstu2";
 
         IGenericClient client = ctx.newRestfulGenericClient(serverBase);
 
@@ -158,7 +158,7 @@ public class HL7Provider {
 //		System.out.println(ctx.newXmlParser().setPrettyPrint(true).encodeResourceToString(bundle));
 
         // Cria cliente do banco com contexto do banco
-        IGenericClient client = ctx.newRestfulGenericClient("http://fhirtest.uhn.ca/baseDstu2");
+        IGenericClient client = ctx.newRestfulGenericClient("https://fhirtest.uhn.ca/baseDstu2");
         Bundle resp = client.transaction().withBundle(bundle).execute();
 
         // loga e retorna o resultado da inserção
