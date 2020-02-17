@@ -76,7 +76,7 @@ public class HL7Provider {
                     + patient.getAddressFirstRep().getCity() + " "
                     + "(" + patient.getAddressFirstRep().getPostalCode() + ")";
 
-            String formatedID = patient.getId().getValue().toString().substring(8, 13);
+            String formatedID = patient.getId().getValue().toString().substring(8, 14);
 
             row[0] = formatedID;
             row[1] = formatedName;
@@ -167,7 +167,7 @@ public class HL7Provider {
         System.out.println(ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(resp));
 
         String[] retornos = new String[3];
-        retornos[0] = resp.getEntryFirstRep().getResponse().getLocation().substring(8, 13);
+        retornos[0] = resp.getEntryFirstRep().getResponse().getLocation().substring(8, 14);
         retornos[1] = ctx.newXmlParser().setPrettyPrint(true).encodeResourceToString(resp);
         retornos[2] = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(resp);
 
