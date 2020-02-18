@@ -143,30 +143,30 @@ public class Tela extends JFrame {
         contentPane.add(lblDadosGerais);
 
         lblIdPesquisa = new JLabel("ID:");
-        lblIdPesquisa.setBounds(356, 334, 50, 14);
+        lblIdPesquisa.setBounds(32, 317, 50, 14);
         contentPane.add(lblIdPesquisa);
 
         JLabel label = new JLabel("Nome:");
-        label.setBounds(32, 337, 86, 14);
+        label.setBounds(32, 343, 86, 14);
         contentPane.add(label);
 
         JLabel label_1 = new JLabel("Sobrenome:");
-        label_1.setBounds(32, 365, 102, 14);
+        label_1.setBounds(32, 368, 102, 14);
         contentPane.add(label_1);
 
         txtIDPesquisa = new JTextField();
         txtIDPesquisa.setColumns(10);
-        txtIDPesquisa.setBounds(389, 331, 68, 20);
+        txtIDPesquisa.setBounds(128, 314, 68, 20);
         contentPane.add(txtIDPesquisa);
 
         txtNomePesquisa = new JTextField();
         txtNomePesquisa.setColumns(10);
-        txtNomePesquisa.setBounds(128, 334, 136, 20);
+        txtNomePesquisa.setBounds(128, 340, 136, 20);
         contentPane.add(txtNomePesquisa);
 
         txtSobrenomePesquisa = new JTextField();
         txtSobrenomePesquisa.setColumns(10);
-        txtSobrenomePesquisa.setBounds(127, 362, 137, 20);
+        txtSobrenomePesquisa.setBounds(128, 365, 137, 20);
         contentPane.add(txtSobrenomePesquisa);
 
         JButton btnCadastrar = new JButton("Cadastrar");
@@ -208,21 +208,25 @@ public class Tela extends JFrame {
             public void actionPerformed(ActionEvent arg0) {
 
                 String id = txtIDPesquisa.getText().toString();
+                String nome = txtNomePesquisa.getText().toString();
+                String sobreNome = txtSobrenomePesquisa.getText().toString();
 
-                String nome = null;
-                if (txtNomePesquisa.getText().toString() != "") {
-                    nome = txtNomePesquisa.getText().toString();
-                }
+//                String nome = null;
+//                if (txtNomePesquisa.getText().toString() != "") {
+//                    nome = txtNomePesquisa.getText().toString();
+//                }
 
-                String sobrenome = null;
-                if (txtSobrenomePesquisa.getText().toString() != "") {
-                    sobrenome = txtSobrenomePesquisa.getText().toString();
-                }
-
-                ArrayList<String[]> result = HL7Provider.searchPatient(nome, sobrenome, id);
+//                String sobrenome = null;
+//                if (txtSobrenomePesquisa.getText().toString() != "") {
+//                    sobrenome = txtSobrenomePesquisa.getText().toString();
+//                }
+                
+                
+                ArrayList<String[]> result = HL7Provider.searchPatient(nome, sobreNome, id);
 
                 DefaultTableModel model = new DefaultTableModel();
-                JTable table = new JTable(model);
+//                JTable table = new JTable(model);
+                table = new JTable(model);
 
                 model.addColumn("ID");
                 table.getColumn("ID").setMaxWidth(15);
@@ -232,13 +236,29 @@ public class Tela extends JFrame {
                 for (String[] row : result) {
                     model.addRow(row);
                 }
+                
+                System.out.println(table.getRowCount());
 
                 scrollPane.setViewportView(table);
             }
         });
-        btnPesquisar.setBounds(375, 361, 110, 23);
+        btnPesquisar.setBounds(375, 331, 110, 23);
         contentPane.add(btnPesquisar);
-
+        
+        JButton btnExport = new JButton("Exportar");
+        btnExport.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+            	String json="";
+            	System.out.println(table.getRowCount());
+            	for(int i = 0; i < table.getRowCount(); i++) {
+            		json += HL7Provider.getPacient((String)table.getValueAt(i, 0), "json") + "\n";
+            	}
+        		System.out.println(json);
+            }
+        });
+        btnExport.setBounds(375, 361, 110, 23);
+        contentPane.add(btnExport);
+        
         scrollPane = new JScrollPane();
         scrollPane.setBounds(20, 395, 465, 210);
         contentPane.add(scrollPane);
